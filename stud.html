@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Forever BCA 2023–2026 💌</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Dancing+Script:wght@400;700&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+:root{--gold:#c9a84c;--gold-light:#f0d080;--cream:#fdf6e3;--deep:#1a0a00;--burgundy:#5c1a1a;--rose:#e8a0a0;--ink:#2c1a0e;--parchment:#f5e6c8;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Lato',sans-serif;background:#0d0500;overflow:hidden;height:100vh;width:100vw;}
+.page{position:fixed;inset:0;display:none;opacity:0;transition:opacity 0.8s ease;overflow-y:auto;overflow-x:hidden;z-index:10;}
+.page.active{display:flex;opacity:1;}
+.page.fade-out{opacity:0;pointer-events:none;}
+
+/* STARS */
+.stars-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.star{position:absolute;background:white;border-radius:50%;animation:twinkle var(--d,3s) ease-in-out infinite;opacity:0;}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.5)}50%{opacity:var(--op,.8);transform:scale(1)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes floatEnv{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(1deg)}}
+
+/* PAGE 1 – ENVELOPE */
+#page-envelope{background:radial-gradient(ellipse at center,#1a0800 0%,#060200 70%);flex-direction:column;align-items:center;justify-content:center;gap:30px;}
+.env-title{font-family:'Dancing Script',cursive;font-size:clamp(1.4rem,4vw,2.2rem);color:var(--gold-light);text-align:center;letter-spacing:2px;animation:fadeUp 1.5s ease forwards;opacity:0;}
+.envelope-wrap{position:relative;width:min(380px,90vw);animation:floatEnv 4s ease-in-out infinite,fadeUp 1.2s .4s ease forwards;opacity:0;}
+.envelope{width:100%;aspect-ratio:1.6;background:linear-gradient(145deg,#c9a84c,#8b6914,#c9a84c);border-radius:4px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 40px rgba(201,168,76,.2);cursor:pointer;}
+.env-flap{position:absolute;top:0;left:0;right:0;height:50%;background:linear-gradient(160deg,#b8952d,#9a7510);clip-path:polygon(0 0,50% 60%,100% 0);transform-origin:top center;transform:rotateX(0deg);transition:transform .7s ease;z-index:2;border-radius:4px 4px 0 0;}
+.envelope.open .env-flap{transform:rotateX(-160deg);}
+.env-left{position:absolute;bottom:0;left:0;width:50%;height:100%;background:linear-gradient(135deg,#b8952d 50%,transparent 50%);}
+.env-right{position:absolute;bottom:0;right:0;width:50%;height:100%;background:linear-gradient(225deg,#b8952d 50%,transparent 50%);}
+.env-bottom{position:absolute;bottom:0;left:0;right:0;height:50%;background:#9a7510;border-radius:0 0 4px 4px;}
+.wax-seal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:radial-gradient(circle,#8b0000,#5c0000);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#f0d080;z-index:3;box-shadow:0 4px 15px rgba(0,0,0,.5);border:2px solid rgba(240,208,128,.4);}
+.pull-tag-wrap{position:absolute;right:-18px;top:50%;transform:translateY(-50%);display:flex;align-items:center;animation:pulseTag 2s ease-in-out infinite;}
+@keyframes pulseTag{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(5px)}}
+.pull-tag{background:linear-gradient(135deg,#8b0000,#c01a1a);color:white;font-family:'Dancing Script',cursive;font-size:.8rem;padding:6px 14px;border-radius:20px;cursor:pointer;box-shadow:0 4px 12px rgba(139,0,0,.5);border:1px solid rgba(255,255,255,.2);white-space:nowrap;}
+.pull-string{width:20px;height:2px;background:var(--gold);}
+.env-hint{font-family:'Dancing Script',cursive;color:rgba(201,168,76,.6);font-size:.9rem;animation:fadeUp 1.2s .8s ease forwards,pulse2 2s 2s ease-in-out infinite;opacity:0;}
+@keyframes pulse2{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* PAGE 2 – LETTER */
+#page-letter{background:radial-gradient(ellipse at top,#0f0500 0%,#050100 100%);flex-direction:column;align-items:center;padding:40px 20px 80px;}
+.floating-photos-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.float-photo{position:absolute;width:var(--sz,80px);height:var(--sz,80px);border-radius:50%;border:3px solid rgba(201,168,76,.4);overflow:hidden;background:linear-gradient(135deg,#2a1505,#1a0a00);display:flex;align-items:center;justify-content:center;font-size:1.6rem;animation:floatPhoto var(--dur,8s) ease-in-out infinite var(--delay,0s);box-shadow:0 0 20px rgba(201,168,76,.2);}
+@keyframes floatPhoto{0%,100%{transform:translateY(0) scale(1) rotate(0deg)}33%{transform:translateY(-20px) scale(1.05) rotate(3deg)}66%{transform:translateY(10px) scale(.95) rotate(-3deg)}}
+.letter-paper{position:relative;z-index:5;width:min(680px,95vw);background:linear-gradient(160deg,#fdf8f0,#f5e6c8,#fdf0dc);border-radius:2px;padding:clamp(30px,6vw,60px);box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 60px rgba(201,168,76,.15),inset 0 0 40px rgba(0,0,0,.05);animation:letterReveal 1.2s .3s ease forwards;opacity:0;transform:translateY(40px);border-top:4px solid var(--gold);margin-top:20px;}
+@keyframes letterReveal{to{opacity:1;transform:translateY(0)}}
+.letter-paper::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(transparent,transparent 31px,rgba(139,105,20,.12) 31px,rgba(139,105,20,.12) 32px);pointer-events:none;border-radius:2px;}
+.letter-header{text-align:center;margin-bottom:30px;padding-bottom:20px;border-bottom:2px solid rgba(201,168,76,.3);}
+.letter-logo{font-family:'Cinzel',serif;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--gold);letter-spacing:4px;}
+.letter-sub{font-family:'Dancing Script',cursive;font-size:clamp(.9rem,2vw,1.2rem);color:var(--burgundy);margin-top:6px;}
+.letter-content{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.2vw,1.2rem);line-height:2;color:var(--ink);font-style:italic;}
+.letter-content p{margin-bottom:1.2em;}
+.letter-content .highlight{color:var(--burgundy);font-weight:600;font-style:normal;}
+.letter-salutation{font-family:'Dancing Script',cursive;font-size:clamp(1.3rem,3vw,1.8rem);color:var(--gold);margin-bottom:20px;display:block;}
+.letter-sign{font-family:'Dancing Script',cursive;font-size:clamp(1.4rem,3.5vw,2rem);color:var(--burgundy);text-align:right;margin-top:30px;padding-top:10px;border-top:1px solid rgba(201,168,76,.3);}
+.audio-section{margin:30px 0;padding:20px;background:rgba(201,168,76,.08);border-radius:8px;border:1px solid rgba(201,168,76,.2);text-align:center;}
+.audio-title{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:3px;color:var(--gold);margin-bottom:12px;text-transform:uppercase;}
+audio{width:100%;filter:sepia(.5);border-radius:30px;}
+.audio-note{font-family:'Lato',sans-serif;font-size:.75rem;color:rgba(139,105,20,.7);margin-top:8px;font-style:italic;}
+.letter-continue-btn{display:block;margin:40px auto 0;padding:14px 40px;background:linear-gradient(135deg,var(--gold),#8b6914);color:var(--cream);border:none;border-radius:2px;font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:3px;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,.3);transition:all .3s ease;position:relative;z-index:10;}
+.letter-continue-btn:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(0,0,0,.4),0 0 20px rgba(201,168,76,.3);}
+.sparkle{position:fixed;width:6px;height:6px;background:var(--gold-light);border-radius:50%;pointer-events:none;animation:sparkleFly 2s ease-out forwards;z-index:999;}
+@keyframes sparkleFly{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx,50px),var(--dy,-80px)) scale(0);opacity:0}}
+
+/* PAGE 3 – FEEDBACK */
+#page-feedback{background:radial-gradient(ellipse at center,#0a0400 0%,#020100 100%);flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;}
+.feedback-card{width:min(540px,95vw);background:linear-gradient(160deg,#fdf8f0,#f5e6c8);border-radius:4px;padding:clamp(30px,5vw,50px);box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 40px rgba(201,168,76,.15);border-top:4px solid var(--gold);animation:letterReveal 1s ease forwards;opacity:0;}
+.feedback-title{font-family:'Cinzel',serif;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--gold);text-align:center;letter-spacing:3px;margin-bottom:8px;}
+.feedback-sub{font-family:'Dancing Script',cursive;text-align:center;color:var(--burgundy);font-size:1.1rem;margin-bottom:30px;}
+.fb-group{margin-bottom:20px;}
+.fb-label{display:block;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:2px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;}
+.fb-input,.fb-textarea{width:100%;padding:12px 16px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.3);border-radius:2px;font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink);outline:none;transition:border-color .3s;}
+.fb-input:focus,.fb-textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.1);}
+.fb-textarea{resize:vertical;min-height:100px;}
+.fb-submit{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),#8b6914);color:white;border:none;border-radius:2px;font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:3px;cursor:pointer;transition:all .3s;margin-top:10px;}
+.fb-submit:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.3);}
+
+/* SHARED COMPONENTS */
+.page-header{text-align:center;margin-bottom:50px;z-index:5;position:relative;}
+.page-header h2{font-family:'Cinzel',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--gold);letter-spacing:5px;text-shadow:0 0 30px rgba(201,168,76,.4);}
+.page-header .sub{font-family:'Dancing Script',cursive;color:var(--rose);font-size:1.2rem;margin-top:8px;}
+.gold-line{width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:15px auto;}
+.nav-btn{display:inline-block;padding:14px 45px;border:1px solid var(--gold);color:var(--gold);background:transparent;font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:3px;cursor:pointer;transition:all .4s;text-transform:uppercase;border-radius:2px;}
+.nav-btn:hover{background:var(--gold);color:var(--deep);box-shadow:0 0 30px rgba(201,168,76,.3);}
+.close-section{width:min(900px,95vw);text-align:center;margin-top:60px;z-index:5;}
+
+/* PAGE 4 – STUDENTS */
+#page-students{background:linear-gradient(135deg,#080200,#0f0400);flex-direction:column;align-items:center;padding:60px 20px 100px;}
+.students-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:25px;width:min(900px,95vw);z-index:5;}
+.student-card{background:linear-gradient(160deg,rgba(201,168,76,.08),rgba(92,26,26,.05));border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:25px 20px;text-align:center;transition:all .4s ease;cursor:default;}
+.student-card:hover{transform:translateY(-8px);border-color:rgba(201,168,76,.5);box-shadow:0 20px 40px rgba(0,0,0,.4),0 0 20px rgba(201,168,76,.1);}
+.student-avatar{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#2a1505,#1a0a00);margin:0 auto 15px;border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:2rem;overflow:hidden;}
+.student-avatar img{width:100%;height:100%;object-fit:cover;}
+.student-role{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.student-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--cream);font-style:italic;}
+
+/* PAGE 5 – ACHIEVEMENTS */
+#page-achievements{background:linear-gradient(160deg,#060100,#0e0500);flex-direction:column;align-items:center;padding:60px 20px 100px;}
+.achievement-list{width:min(800px,95vw);z-index:5;display:flex;flex-direction:column;gap:20px;}
+.ach-item{display:flex;align-items:flex-start;gap:20px;background:linear-gradient(135deg,rgba(201,168,76,.05),transparent);border:1px solid rgba(201,168,76,.15);border-radius:4px;padding:20px 25px;transition:all .4s;}
+.ach-item:hover{border-color:rgba(201,168,76,.4);transform:translateX(10px);box-shadow:-4px 0 0 var(--gold);}
+.ach-icon{font-size:1.8rem;flex-shrink:0;width:50px;height:50px;display:flex;align-items:center;justify-content:center;background:rgba(201,168,76,.1);border-radius:50%;border:1px solid rgba(201,168,76,.3);}
+.ach-text h4{font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;letter-spacing:1px;margin-bottom:5px;}
+.ach-text p{font-family:'Cormorant Garamond',serif;color:rgba(240,208,128,.7);font-size:1rem;font-style:italic;}
+.ach-photos{width:min(800px,95vw);display:flex;gap:15px;flex-wrap:wrap;justify-content:center;margin-top:40px;z-index:5;}
+.ach-photo-box{width:160px;height:160px;border-radius:4px;background:linear-gradient(135deg,#2a1505,#1a0a00);border:2px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-size:2rem;overflow:hidden;transition:all .4s;}
+.ach-photo-box:hover{transform:scale(1.08) rotate(2deg);border-color:var(--gold);box-shadow:0 10px 30px rgba(0,0,0,.4);}
+.ach-photo-box img{width:100%;height:100%;object-fit:cover;}
+
+/* PAGE 6 – FEST */
+#page-fest{background:linear-gradient(180deg,#060100,#0a0300);flex-direction:column;align-items:center;padding:60px 20px 100px;}
+.fest-grid{width:min(900px,95vw);display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;z-index:5;margin-top:30px;}
+.fest-photo{border-radius:4px;overflow:hidden;background:linear-gradient(135deg,#2a1505,#1a0a00);aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:2.5rem;border:1px solid rgba(201,168,76,.2);transition:all .4s;cursor:pointer;}
+.fest-photo:hover{transform:scale(1.04);border-color:var(--gold);box-shadow:0 10px 30px rgba(0,0,0,.5);}
+.fest-photo img{width:100%;height:100%;object-fit:cover;}
+.fest-photo.wide{grid-column:span 2;aspect-ratio:2;}
+
+/* PAGE 7 – HOD */
+#page-hod{background:radial-gradient(ellipse at top,#0f0500,#030100);flex-direction:column;align-items:center;padding:60px 20px 100px;}
+.hod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;width:min(800px,95vw);z-index:5;margin-top:30px;}
+.hod-card{background:linear-gradient(160deg,rgba(201,168,76,.06),rgba(92,26,26,.08));border:1px solid rgba(201,168,76,.25);border-radius:4px;padding:35px 25px;text-align:center;position:relative;overflow:hidden;}
+.hod-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.hod-photo{width:130px;height:130px;border-radius:50%;margin:0 auto 20px;background:linear-gradient(135deg,#2a1505,#1a0a00);border:4px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:3rem;overflow:hidden;box-shadow:0 0 30px rgba(201,168,76,.2);}
+.hod-photo img{width:100%;height:100%;object-fit:cover;}
+.hod-tag{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.hod-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--cream);margin-bottom:15px;}
+.hod-about{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(253,246,227,.7);line-height:1.8;font-style:italic;}
+.quotes-section{width:min(700px,95vw);text-align:center;margin-top:60px;z-index:5;padding:40px;border:1px solid rgba(201,168,76,.2);border-radius:4px;background:rgba(201,168,76,.03);}
+.quote-mark{font-family:'Cormorant Garamond',serif;font-size:5rem;color:rgba(201,168,76,.2);line-height:.5;display:block;margin-bottom:20px;}
+.quote-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2.5vw,1.4rem);color:var(--cream);font-style:italic;line-height:1.9;}
+.quote-author{font-family:'Dancing Script',cursive;color:var(--gold);font-size:1.2rem;margin-top:20px;display:block;}
+
+/* PAGE 8 – FINAL */
+#page-final{background:#000;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;}
+.final-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at center,#0f0500 0%,#000 70%);}
+.closing-lines{position:fixed;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:0;pointer-events:none;}
+.c-line{height:2px;width:100%;background:rgba(201,168,76,.15);transform:scaleX(0);transform-origin:left;transition:transform .3s ease;}
+.final-content{position:relative;z-index:10;text-align:center;padding:30px;}
+.final-title{font-family:'Dancing Script',cursive;font-size:clamp(1.8rem,5vw,3.5rem);color:var(--gold);line-height:1.6;opacity:0;animation:finalReveal 2s 1s ease forwards;text-shadow:0 0 40px rgba(201,168,76,.5);}
+@keyframes finalReveal{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.final-msg{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.2vw,1.3rem);color:rgba(253,246,227,.8);font-style:italic;line-height:2;max-width:680px;margin:25px auto;opacity:0;animation:finalReveal 2s 2s ease forwards;}
+.final-sign{font-family:'Dancing Script',cursive;font-size:clamp(1.5rem,3.5vw,2.5rem);color:var(--rose);opacity:0;animation:finalReveal 2s 3.5s ease forwards;text-shadow:0 0 30px rgba(232,160,160,.4);}
+.emoji-float{position:fixed;font-size:var(--fs,1.5rem);animation:floatUp var(--dur2,6s) linear infinite var(--d2,0s);pointer-events:none;z-index:15;opacity:0;}
+@keyframes floatUp{0%{transform:translateY(110vh) rotate(0deg);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-10vh) rotate(360deg);opacity:0}}
+
+/* TOAST */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--gold);color:var(--deep);font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:2px;padding:12px 28px;border-radius:2px;opacity:0;transition:all .4s;z-index:999;pointer-events:none;text-align:center;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+@media(max-width:480px){.students-grid{grid-template-columns:repeat(2,1fr)}.hod-grid{grid-template-columns:1fr}.ach-photo-box{width:120px;height:120px}}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 – ENVELOPE -->
+<section class="page active" id="page-envelope">
+  <div class="stars-bg" id="stars"></div>
+  <p class="env-title">✦ A Letter From The Heart ✦</p>
+  <div class="envelope-wrap">
+    <div class="envelope" id="envelope">
+      <div class="env-flap"></div>
+      <div class="env-left"></div>
+      <div class="env-right"></div>
+      <div class="env-bottom"></div>
+      <div class="wax-seal">♡</div>
+      <div class="pull-tag-wrap">
+        <div class="pull-string"></div>
+        <div class="pull-tag" onclick="openEnvelope()">✦ Pull</div>
+      </div>
+    </div>
+  </div>
+  <p class="env-hint">Pull the tag to open your letter...</p>
+</section>
+
+<!-- PAGE 2 – LETTER -->
+<section class="page" id="page-letter">
+  <div class="floating-photos-bg" id="floating-photos"></div>
+  <div class="letter-paper">
+    <div class="letter-header">
+      <div class="letter-logo">FOREVER BCA</div>
+      <div class="gold-line"></div>
+      <div class="letter-sub">2023 – 2026 ✦ Memories That Never Fade</div>
+    </div>
+    <div class="audio-section">
+      <div class="audio-title">♪ Listen While You Read</div>
+      <!-- 🔧 REPLACE src WITH YOUR AUDIO FILE PATH -->
+      <audio controls>
+        <source src="your-audio-file.mp3" type="audio/mpeg">
+        Your browser does not support audio.
+      </audio>
+      <p class="audio-note">🔧 Replace "your-audio-file.mp3" with your actual audio file path</p>
+    </div>
+    <div class="letter-content">
+      <span class="letter-salutation">My Dearest Students,</span>
+      <p>Three years ago, you walked through those doors — <span class="highlight">uncertain, curious, and full of dreams.</span> Today, as I write this letter, my heart is overflowing with pride, love, and a thousand beautiful memories that no photograph could ever fully capture.</p>
+      <p>You were not just my students. You were my morning reason, my everyday joy, and my greatest teachers. In teaching you, <span class="highlight">I learned what love truly looks like</span> — it looks like you.</p>
+      <p>Through every project, every late submission, every laughter in the corridors, every festival you danced through and every struggle you quietly carried — <span class="highlight">I was watching. I was proud. Always.</span></p>
+      <p>You came into my life during one of my hardest chapters. And with your warmth, your silliness, your respect and your love — <span class="highlight">you didn't just make it bearable, you made it beautiful.</span> You healed something in me I didn't even know needed healing.</p>
+      <p>As you step into the next chapter of your stories, carry this with you: <span class="highlight">you are extraordinary.</span> Every single one of you. The world is waiting for what only you can bring to it.</p>
+      <p>Don't forget where you came from. Don't forget these halls, these friendships, and <span class="highlight">don't forget the version of yourself that laughed, grew and became</span> right here in BCA 2023–2026.</p>
+      <p>I will carry you — all of you — in my heart. <em>Forever.</em></p>
+      <div class="letter-sign">With all my love & prayers,<br/>Ragavi Mam 🌸</div>
+    </div>
+    <button class="letter-continue-btn" onclick="goToPage('page-feedback')">LEAVE YOUR HEART HERE →</button>
+  </div>
+</section>
+
+<!-- PAGE 3 – FEEDBACK -->
+<section class="page" id="page-feedback">
+  <div class="stars-bg" id="stars2"></div>
+  <div class="feedback-card">
+    <div class="feedback-title">YOUR MESSAGE</div>
+    <div class="gold-line"></div>
+    <div class="feedback-sub">Leave a memory for Ragavi Mam ✦</div>
+    <div class="fb-group">
+      <label class="fb-label">Your Name</label>
+      <input class="fb-input" id="fb-name" type="text" placeholder="Your name..."/>
+    </div>
+    <div class="fb-group">
+      <label class="fb-label">Your Email</label>
+      <input class="fb-input" id="fb-email" type="email" placeholder="your@email.com"/>
+    </div>
+    <div class="fb-group">
+      <label class="fb-label">Your Message to Mam</label>
+      <textarea class="fb-textarea" id="fb-msg" placeholder="Write what's in your heart..."></textarea>
+    </div>
+    <div class="fb-group">
+      <label class="fb-label">A Memory You'll Never Forget</label>
+      <textarea class="fb-textarea" id="fb-memory" placeholder="That one moment you'll always remember..." style="min-height:80px"></textarea>
+    </div>
+    <button class="fb-submit" onclick="submitFeedback()">SEND WITH LOVE ♡</button>
+  </div>
+</section>
+
+<!-- PAGE 4 – STUDENT REPS -->
+<section class="page" id="page-students">
+  <div class="stars-bg" id="stars3"></div>
+  <div class="page-header">
+    <h2>THE PILLARS OF OUR BATCH</h2>
+    <div class="gold-line"></div>
+    <p class="sub">Those who led, cared & held us together ✦</p>
+  </div>
+  <div class="students-grid">
+    <!-- 🔧 Replace emoji with <img src="..."> inside .student-avatar for real photos -->
+    <!-- 🔧 Replace "Student Name" with actual names -->
+    <div class="student-card"><div class="student-avatar">👑</div><div class="student-role">Class Representative</div><div class="student-name">Student Name</div></div>
+    <div class="student-card"><div class="student-avatar">⚡</div><div class="student-role">Joint Representative</div><div class="student-name">Student Name</div></div>
+    <div class="student-card"><div class="student-avatar">🌟</div><div class="student-role">Class Incharger</div><div class="student-name">Student Name</div></div>
+    <div class="student-card"><div class="student-avatar">🎨</div><div class="student-role">Cultural Lead</div><div class="student-name">Student Name</div></div>
+    <div class="student-card"><div class="student-avatar">💡</div><div class="student-role">Tech Lead</div><div class="student-name">Student Name</div></div>
+    <div class="student-card"><div class="student-avatar">🏆</div><div class="student-role">Sports Captain</div><div class="student-name">Student Name</div></div>
+    <div class="student-card"><div class="student-avatar">📚</div><div class="student-role">Academic Lead</div><div class="student-name">Student Name</div></div>
+    <div class="student-card"><div class="student-avatar">🎤</div><div class="student-role">Events Head</div><div class="student-name">Student Name</div></div>
+  </div>
+  <div class="close-section">
+    <button class="nav-btn" onclick="goToPage('page-achievements')">SEE THEIR ACHIEVEMENTS →</button>
+  </div>
+</section>
+
+<!-- PAGE 5 – ACHIEVEMENTS -->
+<section class="page" id="page-achievements">
+  <div class="stars-bg" id="stars4"></div>
+  <div class="page-header">
+    <h2>HALL OF GLORY</h2>
+    <div class="gold-line"></div>
+    <p class="sub">Every win that made us proud ✦</p>
+  </div>
+  <div class="achievement-list">
+    <!-- 🔧 Replace with your real achievements -->
+    <div class="ach-item"><div class="ach-icon">🥇</div><div class="ach-text"><h4>Inter-College Hackathon — First Place</h4><p>Team BCA conquered the 24-hour coding marathon, outshining 40+ teams across the state.</p></div></div>
+    <div class="ach-item"><div class="ach-icon">🎭</div><div class="ach-text"><h4>Cultural Fest — Best Performance Award</h4><p>Our batch swept the stage with a performance that left the entire auditorium in tears and applause.</p></div></div>
+    <div class="ach-item"><div class="ach-icon">🏅</div><div class="ach-text"><h4>State Level Paper Presentation — Winners</h4><p>Three students brought home the gold with their AI research paper.</p></div></div>
+    <div class="ach-item"><div class="ach-icon">🌍</div><div class="ach-text"><h4>Community Service Initiative</h4><p>Organised 3 tech literacy camps in rural schools, reaching 200+ underprivileged students.</p></div></div>
+    <div class="ach-item"><div class="ach-icon">⭐</div><div class="ach-text"><h4>100% Placement Record — 2026 Batch</h4><p>Every student secured a placement or higher education admission — a record for the department.</p></div></div>
+    <div class="ach-item"><div class="ach-icon">🎓</div><div class="ach-text"><h4>Department Topper — University Rank</h4><p>Our batchmate secured a university rank, making the entire department beam with pride.</p></div></div>
+  </div>
+  <div class="ach-photos">
+    <!-- 🔧 Replace emojis with real photos using <img src="..."> -->
+    <div class="ach-photo-box">🏆</div>
+    <div class="ach-photo-box">🎭</div>
+    <div class="ach-photo-box">📸</div>
+    <div class="ach-photo-box">🎓</div>
+    <div class="ach-photo-box">💻</div>
+    <div class="ach-photo-box">🌟</div>
+  </div>
+  <div class="close-section">
+    <button class="nav-btn" style="border-color:var(--rose);color:var(--rose)" onclick="goToPage('page-fest')">TIME TO END → BCA FESTS</button>
+  </div>
+</section>
+
+<!-- PAGE 6 – FEST -->
+<section class="page" id="page-fest">
+  <div class="stars-bg" id="stars5"></div>
+  <div class="page-header">
+    <h2>OUR CELEBRATIONS</h2>
+    <div class="gold-line"></div>
+    <p class="sub">The nights we danced like there was no tomorrow ✦</p>
+  </div>
+  <div class="fest-grid">
+    <!-- 🔧 Replace emojis / add <img src="..."> for real fest photos -->
+    <div class="fest-photo wide">🎊</div>
+    <div class="fest-photo">🎤</div>
+    <div class="fest-photo">💃</div>
+    <div class="fest-photo">🥁</div>
+    <div class="fest-photo wide">🎭</div>
+    <div class="fest-photo">🎨</div>
+    <div class="fest-photo">🌈</div>
+    <div class="fest-photo">🎬</div>
+    <div class="fest-photo wide">✨</div>
+    <div class="fest-photo">🎂</div>
+    <div class="fest-photo">🎉</div>
+    <div class="fest-photo">🎸</div>
+  </div>
+  <div class="close-section" style="margin-top:60px">
+    <button class="nav-btn" style="border-color:var(--rose);color:var(--rose)" onclick="goToPage('page-hod')">END IT → MEET OUR GUIDES</button>
+  </div>
+</section>
+
+<!-- PAGE 7 – HOD & MENTOR -->
+<section class="page" id="page-hod">
+  <div class="stars-bg" id="stars6"></div>
+  <div class="page-header">
+    <h2>THE ONES WHO SHAPED US</h2>
+    <div class="gold-line"></div>
+    <p class="sub">With gratitude that words cannot hold ✦</p>
+  </div>
+  <div class="hod-grid">
+    <!-- 🔧 Replace emoji/name with real HOD info & photo -->
+    <div class="hod-card">
+      <div class="hod-photo">👩‍🏫</div>
+      <div class="hod-tag">Former Head of Department</div>
+      <div class="hod-name">HOD Name Here</div>
+      <div class="gold-line"></div>
+      <div class="hod-about">A visionary who built the BCA department from the ground up. Her dedication to excellence shaped not just our curriculum but our character. Under her watch, we learned what it means to truly commit to a craft. We owe her more than she knows.</div>
+    </div>
+    <div class="hod-card">
+      <div class="hod-photo">👩‍🎓</div>
+      <div class="hod-tag">Guide & Mentor</div>
+      <div class="hod-name">Ragavi Mam</div>
+      <div class="gold-line"></div>
+      <div class="hod-about">She joined us in second year — but she became our forever. With patience, warmth, and a love so genuine it could heal a storm, she walked beside us through every challenge. Not just a teacher, but a mother, a friend, and our biggest champion.</div>
+    </div>
+  </div>
+  <div class="quotes-section">
+    <span class="quote-mark">"</span>
+    <p class="quote-text">A teacher takes a hand, opens a mind, and touches a heart.<br/>The best teachers don't give you the answers — they ignite the fire to find them yourself.</p>
+    <span class="quote-author">— To the teachers who changed everything</span>
+  </div>
+  <div class="close-section" style="margin-top:60px">
+    <button class="nav-btn" style="border-color:var(--rose);color:var(--rose);font-size:1rem;padding:16px 50px" onclick="triggerFinalPage()">✦ NEVER ENDS ✦</button>
+  </div>
+</section>
+
+<!-- PAGE 8 – FINAL THANK YOU -->
+<section class="page" id="page-final">
+  <div class="final-overlay"></div>
+  <div class="closing-lines" id="closing-lines"></div>
+  <div id="emoji-container"></div>
+  <div class="final-content">
+    <div class="final-title">Thank You, My Dear Students<br/><span style="font-size:.7em;color:var(--rose)">No... My Hearts of 2023 to 2026</span></div>
+    <p class="final-msg">By Ragavi Mam — who joined you in your second year, who found herself in your smiles, who overcame her struggles in the warmth of your love.<br/><br/><em>With your pleasant love, I overcame my struggle.</em><br/>With love — my lovely students.<br/><br/>A new person walks beside you now as your guide, but the memories we made are mine to keep — forever.</p>
+    <div class="final-sign">— Ragavi Mam 🌸<br/><span style="font-size:.6em;color:rgba(232,160,160,.6)">With all my heart, always</span></div>
+  </div>
+</section>
+
+<div class="toast" id="toast">✓ Message Sent With Love</div>
+
+<script>
+function makeStars(id,n=80){
+  const el=document.getElementById(id);if(!el)return;
+  for(let i=0;i<n;i++){
+    const s=document.createElement('div');s.className='star';
+    const sz=Math.random()*2+1;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--op:${.4+Math.random()*.6};animation-delay:${Math.random()*5}s`;
+    el.appendChild(s);
+  }
+}
+['stars','stars2','stars3','stars4','stars5','stars6'].forEach(id=>makeStars(id));
+
+function makeFloatingPhotos(){
+  const c=document.getElementById('floating-photos');
+  const em=['📸','🌸','✨','💕','🎓','⭐','🌟','💫','🎊','🌺','💝','🎭'];
+  const pos=[{l:'5%',t:'10%'},{l:'88%',t:'8%'},{l:'2%',t:'50%'},{l:'91%',t:'45%'},{l:'8%',t:'80%'},{l:'85%',t:'75%'},{l:'15%',t:'30%'},{l:'78%',t:'25%'},{l:'3%',t:'65%'},{l:'90%',t:'60%'},{l:'12%',t:'92%'},{l:'82%',t:'88%'}];
+  pos.forEach((p,i)=>{
+    const d=document.createElement('div');d.className='float-photo';
+    const sz=50+Math.random()*60;
+    d.style.cssText=`left:${p.l};top:${p.t};--sz:${sz}px;--dur:${6+Math.random()*6}s;--delay:${Math.random()*4}s;animation-delay:${Math.random()*3}s;`;
+    d.textContent=em[i%em.length];c.appendChild(d);
+  });
+}
+makeFloatingPhotos();
+
+function goToPage(tid){
+  const cur=document.querySelector('.page.active');
+  const tgt=document.getElementById(tid);
+  if(!tgt||cur===tgt)return;
+  cur.classList.add('fade-out');
+  setTimeout(()=>{
+    cur.classList.remove('active','fade-out');cur.style.display='none';
+    tgt.style.display='flex';tgt.scrollTop=0;
+    requestAnimationFrame(()=>tgt.classList.add('active'));
+  },600);
+}
+
+function openEnvelope(){
+  document.getElementById('envelope').classList.add('open');
+  spawnSparkles();
+  setTimeout(()=>goToPage('page-letter'),900);
+}
+
+function spawnSparkles(){
+  const env=document.getElementById('envelope');
+  const r=env.getBoundingClientRect();
+  const cx=r.left+r.width/2,cy=r.top+r.height/2;
+  for(let i=0;i<20;i++){
+    const sp=document.createElement('div');sp.className='sparkle';
+    const a=Math.random()*360,d=60+Math.random()*100;
+    sp.style.cssText=`left:${cx}px;top:${cy}px;--dx:${Math.cos(a)*d}px;--dy:${Math.sin(a)*d-60}px;animation-delay:${Math.random()*.3}s;background:${Math.random()>.5?'#f0d080':'#e8a0a0'};width:${4+Math.random()*6}px;height:${4+Math.random()*6}px;`;
+    document.body.appendChild(sp);
+    setTimeout(()=>sp.remove(),2500);
+  }
+}
+
+function submitFeedback(){
+  const name=document.getElementById('fb-name').value.trim();
+  const email=document.getElementById('fb-email').value.trim();
+  const msg=document.getElementById('fb-msg').value.trim();
+  const memory=document.getElementById('fb-memory').value.trim();
+  if(!name||!email||!msg){showToast('Please fill in all fields 💌');return;}
+  // 🔧 REPLACE the email address below with Ragavi Mam's actual email
+  const sub=encodeURIComponent(`Forever BCA 2023-2026 — Message from ${name}`);
+  const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${msg}\n\nFavorite Memory:\n${memory}`);
+  window.open(`mailto:ragavimam@youremail.com?subject=${sub}&body=${body}`,'_blank');
+  showToast('Message of love sent! 💌');
+  setTimeout(()=>goToPage('page-students'),1200);
+}
+
+function showToast(m){
+  const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+function triggerFinalPage(){
+  goToPage('page-final');
+  setTimeout(startClosingAnimation,800);
+}
+
+function startClosingAnimation(){
+  const c=document.getElementById('closing-lines');
+  for(let i=0;i<30;i++){const l=document.createElement('div');l.className='c-line';c.appendChild(l);}
+  c.querySelectorAll('.c-line').forEach((l,i)=>setTimeout(()=>l.style.transform='scaleX(1)',i*80));
+  setTimeout(startEmojis,1500);
+}
+
+function startEmojis(){
+  const ems=['❤️','🌸','💫','✨','🌺','💕','⭐','🎊','🌟','💐','🌹','🦋','💝','🎉','🌻'];
+  const c=document.getElementById('emoji-container');
+  let n=0;
+  const iv=setInterval(()=>{
+    if(n>70){clearInterval(iv);return;}
+    const e=document.createElement('div');e.className='emoji-float';
+    e.textContent=ems[Math.floor(Math.random()*ems.length)];
+    e.style.cssText=`left:${Math.random()*100}%;--fs:${1+Math.random()*2}rem;--dur2:${5+Math.random()*5}s;--d2:0s;`;
+    c.appendChild(e);setTimeout(()=>e.remove(),12000);n++;
+  },200);
+}
+
+document.getElementById('page-letter').addEventListener('mousemove',e=>{
+  if(Math.random()>.97){
+    const sp=document.createElement('div');sp.className='sparkle';
+    sp.style.cssText=`left:${e.clientX}px;top:${e.clientY}px;--dx:${(Math.random()-.5)*80}px;--dy:${-30-Math.random()*60}px;width:4px;height:4px;animation-duration:1.5s;`;
+    document.body.appendChild(sp);setTimeout(()=>sp.remove(),2000);
+  }
+});
+
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0) translateX(0)'}}),{threshold:.1});
+document.querySelectorAll('.student-card,.ach-item,.hod-card').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='all 0.6s ease';obs.observe(el);
+});
+</script>
+</body>
+</html>
